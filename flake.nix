@@ -76,6 +76,7 @@
             # Check for merge conflicts
             check-merge-conflict = {
               enable = true;
+              entry = "${pkgs.git}/bin/git diff --check";
             };
 
             # Detect secrets
