@@ -12,15 +12,30 @@
 (function () {
   "use strict";
 
+  // Detect base URL from script location
+  function getBaseUrl() {
+    const script =
+      document.currentScript ||
+      document.querySelector('script[src*="osgeo-inject"]');
+    if (script && script.src) {
+      // Extract base URL from script src (remove /js/osgeo-inject.js)
+      const url = new URL(script.src);
+      return url.origin + url.pathname.replace(/\/js\/osgeo-inject\.js$/, "");
+    }
+    return "https://affiliate.osgeo.org";
+  }
+
+  const BASE_URL = getBaseUrl();
+
   // Configuration
   const CONFIG = {
-    baseUrl: "https://affiliate.osgeo.org",
-    matomoUrl: "https://affiliate.osgeo.org/matomo",
+    baseUrl: BASE_URL,
+    matomoUrl: BASE_URL + "/matomo",
     matomoSiteId: 1,
     announcementEndpoint: "/content/announcement.json",
     osgeoUrl: "https://www.osgeo.org",
     osgeoProjectsUrl: "https://www.osgeo.org/projects/",
-    logoPath: "/images/osgeo-logo.svg",
+    logoPath: "/images/osgeo-logo.png",
     cacheDuration: 3600000, // 1 hour in milliseconds
   };
 
