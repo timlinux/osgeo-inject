@@ -14,17 +14,29 @@
 
   // Detect base URL from script location
   function getBaseUrl() {
-    const script =
-      document.currentScript ||
-      document.querySelector('script[src*="osgeo-inject"]');
+    // Try currentScript first (works during initial script execution)
+    let script = document.currentScript;
+
+    // Fallback: find the script by src attribute
+    if (!script) {
+      script = document.querySelector('script[src*="osgeo-inject"]');
+    }
+
+    // Check for explicit base URL override via data attribute
+    if (script && script.dataset.baseUrl) {
+      return script.dataset.baseUrl;
+    }
+
     if (script && script.src) {
-      // Extract base URL from script src (remove /js/osgeo-inject.js)
+      // Extract base URL from script src (remove /js/osgeo-inject.js or similar)
       const url = new URL(script.src);
-      return url.origin + url.pathname.replace(/\/js\/osgeo-inject\.js$/, "");
+      const path = url.pathname.replace(/\/js\/osgeo-inject(\.min)?\.js$/, "");
+      return url.origin + path;
     }
     return "https://affiliate.osgeo.org";
   }
 
+  // Capture base URL immediately during script load
   const BASE_URL = getBaseUrl();
 
   // Configuration
@@ -198,7 +210,7 @@
         </button>
         <div class="osgeo-inject__content">
           <a href="${CONFIG.osgeoUrl}" class="osgeo-inject__logo" target="_blank" rel="noopener noreferrer" aria-label="Visit OSGeo">
-            <img src="${CONFIG.baseUrl}${CONFIG.logoPath}" alt="OSGeo Logo" width="60" height="60" loading="lazy">
+            <img src="${CONFIG.baseUrl}${CONFIG.logoPath}" alt="OSGeo Logo" loading="lazy">
           </a>
           <div class="osgeo-inject__text">
             <a href="${CONFIG.osgeoProjectsUrl}" class="osgeo-inject__title" target="_blank" rel="noopener noreferrer">

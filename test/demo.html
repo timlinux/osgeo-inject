@@ -326,6 +326,7 @@ SPDX-License-Identifier: MIT
       script.src = '../src/js/osgeo-inject.js';
       script.dataset.position = position;
       script.dataset.theme = theme;
+      script.dataset.baseUrl = 'http://localhost:8080/src';
       if (collapsed) {
         script.dataset.collapsed = 'true';
       }
@@ -340,6 +341,7 @@ SPDX-License-Identifier: MIT
       const script = document.createElement('script');
       script.src = '../src/js/osgeo-inject.js';
       script.dataset.position = 'top-right';
+      script.dataset.baseUrl = 'http://localhost:8080/src';
       document.body.appendChild(script);
     };
   </script>

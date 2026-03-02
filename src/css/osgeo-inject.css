@@ -8,25 +8,33 @@
 
 /* CSS Custom Properties for theming */
 .osgeo-inject {
-  --osgeo-bg: #fff;
-  --osgeo-text: #333;
-  --osgeo-text-secondary: #666;
-  --osgeo-border: #e0e0e0;
-  --osgeo-shadow: rgba(0, 0, 0, 0.15);
+  --osgeo-bg: #ffffff;
+  --osgeo-bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  --osgeo-text: #2c3e50;
+  --osgeo-text-secondary: #6c757d;
+  --osgeo-border: #e9ecef;
+  --osgeo-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   --osgeo-accent: #4caf50;
-  --osgeo-link: #1a73e8;
-  --osgeo-link-hover: #0d47a1;
+  --osgeo-accent-light: rgba(76, 175, 80, 0.1);
+  --osgeo-link: #2196f3;
+  --osgeo-link-hover: #1976d2;
+  --osgeo-logo-bg: #f8f9fa; /* Light background for dark logo text */
+  --osgeo-logo-bg-hover: #eef0f2;
 }
 
 .osgeo-inject--dark {
-  --osgeo-bg: #2d2d2d;
-  --osgeo-text: #e0e0e0;
-  --osgeo-text-secondary: #a0a0a0;
-  --osgeo-border: #444;
-  --osgeo-shadow: rgba(0, 0, 0, 0.4);
+  --osgeo-bg: #1e1e2e;
+  --osgeo-bg-gradient: linear-gradient(135deg, #1e1e2e 0%, #252535 100%);
+  --osgeo-text: #e8e8e8;
+  --osgeo-text-secondary: #b0b0b0;
+  --osgeo-border: #3d3d4d;
+  --osgeo-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   --osgeo-accent: #66bb6a;
+  --osgeo-accent-light: rgba(102, 187, 106, 0.2);
   --osgeo-link: #64b5f6;
   --osgeo-link-hover: #90caf9;
+  --osgeo-logo-bg: #f8f9fa; /* Always light for logo visibility */
+  --osgeo-logo-bg-hover: #eef0f2;
 }
 
 /* Base container styles */
@@ -36,8 +44,9 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
   box-sizing: border-box;
+  pointer-events: none; /* Container doesn't capture events */
 }
 
 .osgeo-inject *,
@@ -48,57 +57,66 @@
 
 /* Position variants */
 .osgeo-inject--top-right {
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
 }
 
 .osgeo-inject--top-left {
-  top: 16px;
-  left: 16px;
+  top: 20px;
+  left: 20px;
 }
 
 .osgeo-inject--bottom-right {
-  bottom: 16px;
-  right: 16px;
+  bottom: 20px;
+  right: 20px;
 }
 
 .osgeo-inject--bottom-left {
-  bottom: 16px;
-  left: 16px;
+  bottom: 20px;
+  left: 20px;
 }
 
 /* Inner container */
 .osgeo-inject__inner {
-  background: var(--osgeo-bg);
+  position: relative;
+  background: var(--osgeo-bg-gradient);
   border: 1px solid var(--osgeo-border);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px var(--osgeo-shadow);
-  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: var(--osgeo-shadow);
+  width: 240px;
   overflow: hidden;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: auto; /* Re-enable events on visible content */
+}
+
+.osgeo-inject__inner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
 /* Toggle button */
 .osgeo-inject__toggle {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 8px;
+  right: 8px;
   width: 24px;
   height: 24px;
   padding: 0;
   border: none;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.6;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 1;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  z-index: 2;
 }
 
 .osgeo-inject__toggle:hover {
   opacity: 1;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .osgeo-inject__toggle:focus {
@@ -109,83 +127,86 @@
 .osgeo-inject__toggle-icon {
   display: block;
   font-size: 10px;
-  color: var(--osgeo-text-secondary);
-  transition: transform 0.2s ease;
+  color: #333;
+  transition: transform 0.3s ease;
 }
 
-/* Content area */
+/* Content area - vertical layout */
 .osgeo-inject__content {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px;
-  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
-  max-height: 200px;
+  flex-direction: column;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  max-height: 300px;
   opacity: 1;
 }
 
-/* Logo */
+/* Logo section - full width header with light background */
 .osgeo-inject__logo {
-  flex-shrink: 0;
   display: block;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  background: var(--osgeo-logo-bg);
+  padding: 16px 20px;
+  text-align: center;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .osgeo-inject__logo:hover {
-  transform: scale(1.05);
+  background: var(--osgeo-logo-bg-hover);
 }
 
 .osgeo-inject__logo img {
   display: block;
-  width: 60px;
-  height: 60px;
-  border-radius: 4px;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin: 0 auto;
 }
 
-/* Text content */
+/* Text content section */
 .osgeo-inject__text {
-  flex: 1;
-  min-width: 0;
+  padding: 16px 20px;
+  text-align: center;
 }
 
 .osgeo-inject__title {
   display: block;
   color: var(--osgeo-text);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
   transition: color 0.2s ease;
 }
 
 .osgeo-inject__title:hover {
-  color: var(--osgeo-link);
+  color: var(--osgeo-accent);
 }
 
+/* Announcement link - styled as a subtle button */
 .osgeo-inject__announcement {
   display: block;
   color: var(--osgeo-link);
   font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  transition: color 0.2s ease;
+  padding: 10px 16px;
+  background: var(--osgeo-accent-light);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .osgeo-inject__announcement:hover {
-  color: var(--osgeo-link-hover);
-  text-decoration: underline;
+  background: var(--osgeo-accent);
+  color: #fff;
 }
 
 /* Collapsed state */
 .osgeo-inject--collapsed .osgeo-inject__content {
   max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
   opacity: 0;
   overflow: hidden;
 }
@@ -195,37 +216,43 @@
 }
 
 .osgeo-inject--collapsed .osgeo-inject__inner {
-  padding: 8px;
+  width: auto;
 }
 
 .osgeo-inject--collapsed .osgeo-inject__toggle {
   position: static;
-  width: 100%;
-  height: auto;
-  padding: 4px;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  background: var(--osgeo-accent);
   opacity: 1;
+}
+
+.osgeo-inject--collapsed .osgeo-inject__toggle:hover {
+  background: var(--osgeo-link-hover);
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .osgeo-inject {
-    left: 8px !important;
-    right: 8px !important;
-    max-width: none;
+    left: 12px !important;
+    right: 12px !important;
   }
 
   .osgeo-inject__inner {
+    width: 100%;
     max-width: none;
   }
 
   .osgeo-inject--top-right,
   .osgeo-inject--top-left {
-    top: 8px;
+    top: 12px;
   }
 
   .osgeo-inject--bottom-right,
   .osgeo-inject--bottom-left {
-    bottom: 8px;
+    bottom: 12px;
   }
 }
 
