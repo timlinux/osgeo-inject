@@ -1,0 +1,45 @@
+/* SPDX-FileCopyrightText: 2026 Tim Sketcher <tim@kartoza.com> */
+/* SPDX-License-Identifier: MIT */
+
+/* MkDocs Material theme customizations */
+
+:root {
+  --md-primary-fg-color: #4caf50;
+  --md-primary-fg-color--light: #81c784;
+  --md-primary-fg-color--dark: #388e3c;
+  --md-accent-fg-color: #66bb6a;
+}
+
+/* Custom footer styling */
+.md-footer-meta__inner {
+  text-align: center;
+}
+
+/* Code block styling */
+.highlight pre {
+  border-radius: 8px;
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+  background: transparent !important;
+}
+
+/* Badge images in docs */
+img[alt="badge"] {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+/* Custom admonition for OSGeo */
+.md-typeset .admonition.osgeo {
+  border-color: #4caf50;
+}
+
+.md-typeset .admonition.osgeo > .admonition-title {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.md-typeset .admonition.osgeo > .admonition-title::before {
+  background-color: #4caf50;
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!--
+SPDX-FileCopyrightText: 2026 Tim Sketcher <tim@kartoza.com>
+SPDX-License-Identifier: MIT
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSGEO-Inject Demo - Sample Project Page</title>
+  <style>
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #4caf50;
+      --primary-dark: #388e3c;
+      --bg: #f5f5f5;
+      --card-bg: #fff;
+      --text: #333;
+      --text-secondary: #666;
+      --border: #e0e0e0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    /* Navigation */
+    .nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
+    /* Main content */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin: 0 0 1rem;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Features grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .feature h3 {
+      margin: 0 0 0.5rem;
+      color: var(--primary);
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    /* Code block */
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    .code-block code {
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #333;
+      color: #ccc;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .footer a {
+      color: var(--primary);
+    }
+
+    /* Demo controls */
+    .demo-controls {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .demo-controls h3 {
+      margin: 0 0 1rem;
+      color: #856404;
+    }
+
+    .demo-controls label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-controls select {
+      padding: 0.5rem;
+      margin-right: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .demo-controls button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>🌍 Sample GIS Project</h1>
+    <p>An example OSGeo community project website</p>
+  </header>
+
+  <nav class="nav">
+    <a href="#">Home</a>
+    <a href="#">Documentation</a>
+    <a href="#">Download</a>
+    <a href="#">Community</a>
+    <a href="#">GitHub</a>
+  </nav>
+
+  <main class="main">
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+      <h3>🔧 OSGEO-Inject Demo Controls</h3>
+      <p>Use these controls to test different badge configurations:</p>
+      <label>
+        Position:
+        <select id="position">
+          <option value="top-right">Top Right (Default)</option>
+          <option value="top-left">Top Left</option>
+          <option value="bottom-right">Bottom Right</option>
+          <option value="bottom-left">Bottom Left</option>
+        </select>
+      </label>
+      <label>
+        Theme:
+        <select id="theme">
+          <option value="auto">Auto (System)</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <label>
+        <input type="checkbox" id="collapsed"> Start Collapsed
+      </label>
+      <button onclick="reloadBadge()">Apply Changes</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Powerful Open Source GIS Tools</h2>
+      <p>
+        This is a sample project landing page demonstrating how the OSGEO-Inject
+        badge appears on participating OSGeo community project websites.
+      </p>
+      <a href="#" class="btn">Get Started</a>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="feature">
+        <h3>📊 Data Processing</h3>
+        <p>Process large geospatial datasets with ease using our optimized algorithms.</p>
+      </div>
+      <div class="feature">
+        <h3>🗺️ Map Visualization</h3>
+        <p>Create beautiful, interactive maps for web and desktop applications.</p>
+      </div>
+      <div class="feature">
+        <h3>🔌 Plugin System</h3>
+        <p>Extend functionality with our powerful plugin architecture.</p>
+      </div>
+      <div class="feature">
+        <h3>🌐 Standards Compliant</h3>
+        <p>Full support for OGC standards including WMS, WFS, and WCS.</p>
+      </div>
+    </section>
+
+    <!-- Integration Code -->
+    <section>
+      <h2>Integration Code</h2>
+      <p>Add the OSGEO-Inject badge to your project with just two lines:</p>
+      <div class="code-block">
+        <code>&lt;script
+  src="https://affiliate.osgeo.org/js/osgeo-inject.min.js"
+  defer
+  data-position="top-right"
+&gt;&lt;/script&gt;
+&lt;link
+  rel="stylesheet"
+  href="https://affiliate.osgeo.org/css/osgeo-inject.min.css"
+&gt;</code>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Sample Project &copy; 2026 |
+      Made with 💗 by <a href="https://kartoza.com">Kartoza</a> |
+      <a href="https://github.com/sponsors/timlinux">Donate!</a> |
+      <a href="https://github.com/timlinux/osgeo-inject">GitHub</a>
+    </p>
+  </footer>
+
+  <!-- OSGEO-Inject Integration -->
+  <link rel="stylesheet" href="../src/css/osgeo-inject.css">
+  <script>
+    // Demo reload function
+    function reloadBadge() {
+      // Remove existing badge
+      const existing = document.getElementById('osgeo-inject-badge');
+      if (existing) {
+        existing.remove();
+      }
+
+      // Get new settings
+      const position = document.getElementById('position').value;
+      const theme = document.getElementById('theme').value;
+      const collapsed = document.getElementById('collapsed').checked;
+
+      // Create new script with updated attributes
+      const script = document.createElement('script');
+      script.src = '../src/js/osgeo-inject.js';
+      script.dataset.position = position;
+      script.dataset.theme = theme;
+      if (collapsed) {
+        script.dataset.collapsed = 'true';
+      }
+
+      // Re-initialize
+      delete window.OSGeoInject;
+      document.body.appendChild(script);
+    }
+
+    // Initial load
+    window.onload = function() {
+      const script = document.createElement('script');
+      script.src = '../src/js/osgeo-inject.js';
+      script.dataset.position = 'top-right';
+      document.body.appendChild(script);
+    };
+  </script>
+</body>
+</html>

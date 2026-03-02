@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.npm
+
+# Build outputs
+dist/
+site/
+*.min.js
+*.min.css
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+PROMPT.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Nix
+result
+result-*
+.direnv/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Backups
+backups/
+*.backup
+*.bak
+
+# Secrets
+*.key
+*.pem
+.secrets.baseline
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+venv/
+
+# Data files (generated)
+data/sites.json
+.claude/

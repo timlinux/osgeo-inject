@@ -1,0 +1,65 @@
+{
+  "name": "osgeo-inject",
+  "version": "0.1.0",
+  "description": "Lightweight affiliate badge system for OSGeo community projects",
+  "main": "src/js/osgeo-inject.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timlinux/osgeo-inject.git"
+  },
+  "keywords": [
+    "osgeo",
+    "badge",
+    "widget",
+    "geospatial",
+    "gis"
+  ],
+  "author": "Tim Sketcher <tim@kartoza.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timlinux/osgeo-inject/issues"
+  },
+  "homepage": "https://github.com/timlinux/osgeo-inject#readme",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "uglifyjs src/js/osgeo-inject.js --compress --mangle -o src/js/osgeo-inject.min.js",
+    "build:css": "cleancss -o src/css/osgeo-inject.min.css src/css/osgeo-inject.css",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint src/**/*.js",
+    "lint:css": "stylelint src/**/*.css",
+    "format": "prettier --write \"**/*.{js,css,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,css,json,md,yml,yaml}\"",
+    "test": "echo 'No tests configured yet'",
+    "serve": "python3 -m http.server 8080 -d src",
+    "docs:serve": "mkdocs serve",
+    "docs:build": "mkdocs build",
+    "prepare": "if [ -d .git ]; then npx husky install; fi"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "uglify-js": "^3.17.4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

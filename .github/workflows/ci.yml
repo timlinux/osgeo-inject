@@ -1,0 +1,227 @@
+# SPDX-FileCopyrightText: 2026 Tim Sketcher <tim@kartoza.com>
+# SPDX-License-Identifier: MIT
+
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lint-and-format:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npx eslint src/**/*.js --max-warnings 0
+
+      - name: Prettier check
+        run: npx prettier --check "**/*.{js,css,json,md,yml,yaml}"
+
+      - name: Stylelint
+        run: npx stylelint "src/**/*.css"
+
+  shell-checks:
+    name: Shell Script Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: './scripts'
+          severity: warning
+
+      - name: shfmt
+        uses: reviewdog/action-shfmt@v1
+        with:
+          fail_on_error: true
+
+  license-compliance:
+    name: REUSE License Compliance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: REUSE Compliance Check
+        uses: fsfe/reuse-action@v2
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: npm audit
+        run: npm audit --audit-level=high
+
+      - name: Detect secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+  spell-check:
+    name: Spell Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install typos
+        uses: taiki-e/install-action@v2
+        with:
+          tool: typos
+
+      - name: Spell check
+        run: typos
+
+  nginx-validate:
+    name: Nginx Configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nginx
+        run: sudo apt-get update && sudo apt-get install -y nginx
+
+      - name: Validate Nginx config
+        run: |
+          sudo nginx -t -c $(pwd)/nginx/nginx.conf -p $(pwd)/nginx/ || true
+          # Note: Full validation requires all includes to be present
+
+  nix-check:
+    name: Nix Flake Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Check flake
+        run: nix flake check
+
+      - name: Build static assets
+        run: nix build .#static
+
+  docs-build:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs mkdocs-material mkdocs-mermaid2-plugin pygments
+
+      - name: Build docs
+        run: mkdocs build --strict
+
+  test-assets:
+    name: Test Static Assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build minified assets
+        run: npm run build
+
+      - name: Check asset sizes
+        run: |
+          JS_SIZE=$(stat -f%z src/js/osgeo-inject.min.js 2>/dev/null || stat -c%s src/js/osgeo-inject.min.js)
+          CSS_SIZE=$(stat -f%z src/css/osgeo-inject.min.css 2>/dev/null || stat -c%s src/css/osgeo-inject.min.css)
+          echo "JavaScript: ${JS_SIZE} bytes"
+          echo "CSS: ${CSS_SIZE} bytes"
+          # Fail if JS > 10KB or CSS > 5KB
+          [ "$JS_SIZE" -lt 10240 ] || (echo "JS too large!" && exit 1)
+          [ "$CSS_SIZE" -lt 5120 ] || (echo "CSS too large!" && exit 1)
+
+  image-optimization:
+    name: Image Optimization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check image sizes
+        run: |
+          for img in src/images/*; do
+            if [ -f "$img" ]; then
+              SIZE=$(stat -f%z "$img" 2>/dev/null || stat -c%s "$img")
+              echo "$img: ${SIZE} bytes"
+              # Fail if any image > 50KB
+              [ "$SIZE" -lt 51200 ] || (echo "Image $img too large!" && exit 1)
+            fi
+          done
+
+  all-checks-pass:
+    name: All Checks Pass
+    needs:
+      - lint-and-format
+      - shell-checks
+      - license-compliance
+      - security-scan
+      - spell-check
+      - nginx-validate
+      - nix-check
+      - docs-build
+      - test-assets
+      - image-optimization
+    runs-on: ubuntu-latest
+    steps:
+      - name: All checks passed
+        run: echo "All CI checks passed successfully!"

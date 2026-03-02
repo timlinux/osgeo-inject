@@ -1,0 +1,19 @@
+# Typos configuration
+# https://github.com/crate-ci/typos
+
+[default.extend-words]
+# Allow these words that might be flagged as typos
+osgeo = "osgeo"
+matomo = "matomo"
+nginx = "nginx"
+nixos = "nixos"
+
+[files]
+extend-exclude = [
+    "*.min.js",
+    "*.min.css",
+    "node_modules/",
+    "site/",
+    ".git/",
+    "*.lock",
+]
