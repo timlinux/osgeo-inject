@@ -10,8 +10,6 @@
  * affiliation badges and announcements on participating project websites.
  */
 (function () {
-  "use strict";
-
   // Detect base URL from script location
   function getBaseUrl() {
     // Try currentScript first (works during initial script execution)
@@ -255,7 +253,9 @@
    * @returns {string} Escaped string
    */
   function escapeHtml(str) {
-    if (!str) return "";
+    if (!str) {
+      return "";
+    }
     const div = document.createElement("div");
     div.textContent = str;
     return div.innerHTML;
