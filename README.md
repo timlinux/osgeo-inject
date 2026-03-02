@@ -16,8 +16,8 @@ under 15KB and loads asynchronously to never impact host page performance.
 
 ---
 
-[![CI Status](https://github.com/timlinux/osgeo-inject/actions/workflows/ci.yml/badge.svg)](https://github.com/timlinux/osgeo-inject/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/timlinux/osgeo-inject)](https://github.com/timlinux/osgeo-inject/releases/latest)
+[![CI Status](https://github.com/timlinux/OSGEO-Inject/actions/workflows/ci.yml/badge.svg)](https://github.com/timlinux/OSGEO-Inject/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/timlinux/OSGEO-Inject)](https://github.com/timlinux/OSGEO-Inject/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![REUSE Compliant](https://img.shields.io/badge/reuse-compliant-green.svg)](https://reuse.software/)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
@@ -58,7 +58,7 @@ That's it! The OSGeo badge will appear in the top-right corner of your page.
 ## Key Links
 
 - 📖 [**Documentation**](https://timlinux.github.io/osgeo-inject/)
-- 🐛 [**Issue Tracker**](https://github.com/timlinux/osgeo-inject/issues)
+- 🐛 [**Issue Tracker**](https://github.com/timlinux/OSGEO-Inject/issues)
 - 📜 [**Code of Conduct**](CODE_OF_CONDUCT.md)
 - 📄 [**License (MIT)**](LICENSES/MIT.txt)
 - 👩‍💻 [**Developer Guide**](https://timlinux.github.io/osgeo-inject/developer-guide/)
@@ -84,4 +84,4 @@ it useful, please consider supporting its development:
 
 ---
 
-Made with 💗 by [Kartoza](https://kartoza.com) | [Donate!](https://github.com/sponsors/timlinux) | [GitHub](https://github.com/timlinux/osgeo-inject)
+Made with 💗 by [Kartoza](https://kartoza.com) | [Donate!](https://github.com/sponsors/timlinux) | [GitHub](https://github.com/timlinux/OSGEO-Inject)

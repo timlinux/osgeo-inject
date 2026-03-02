@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 
 **Lightweight affiliate badge system for OSGeo community projects**
 
-[![CI Status](https://github.com/timlinux/osgeo-inject/actions/workflows/ci.yml/badge.svg)](https://github.com/timlinux/osgeo-inject/actions/workflows/ci.yml)
+[![CI Status](https://github.com/timlinux/OSGEO-Inject/actions/workflows/ci.yml/badge.svg)](https://github.com/timlinux/OSGEO-Inject/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
@@ -83,4 +83,4 @@ This project is maintained by volunteers in the OSGeo community. If you find it 
 
 ---
 
-Made with 💗 by [Kartoza](https://kartoza.com) | [Donate!](https://github.com/sponsors/timlinux) | [GitHub](https://github.com/timlinux/osgeo-inject)
+Made with 💗 by [Kartoza](https://kartoza.com) | [Donate!](https://github.com/sponsors/timlinux) | [GitHub](https://github.com/timlinux/OSGEO-Inject)

@@ -88,7 +88,7 @@ Contact the OSGEO-Inject administrators with:
 ### Where can I get help?
 
 - [Documentation](https://timlinux.github.io/osgeo-inject/)
-- [GitHub Issues](https://github.com/timlinux/osgeo-inject/issues)
+- [GitHub Issues](https://github.com/timlinux/OSGEO-Inject/issues)
 - [OSGeo Mailing Lists](https://www.osgeo.org/community/)
 
 ### How can I contribute?

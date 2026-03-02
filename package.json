@@ -5,7 +5,7 @@
   "main": "src/js/osgeo-inject.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timlinux/osgeo-inject.git"
+    "url": "git+https://github.com/timlinux/OSGEO-Inject.git"
   },
   "keywords": [
     "osgeo",
@@ -17,9 +17,9 @@
   "author": "Tim Sketcher <tim@kartoza.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/timlinux/osgeo-inject/issues"
+    "url": "https://github.com/timlinux/OSGEO-Inject/issues"
   },
-  "homepage": "https://github.com/timlinux/osgeo-inject#readme",
+  "homepage": "https://github.com/timlinux/OSGEO-Inject#readme",
   "scripts": {
     "build": "npm run build:js && npm run build:css",
     "build:js": "uglifyjs src/js/osgeo-inject.js --compress --mangle -o src/js/osgeo-inject.min.js",

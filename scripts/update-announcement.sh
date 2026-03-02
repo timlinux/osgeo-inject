@@ -438,7 +438,7 @@ generate_history_html() {
   <div class="footer">
     Made with 💗 by <a href="https://kartoza.com">Kartoza</a> |
     <a href="https://github.com/sponsors/timlinux">Donate!</a> |
-    <a href="https://github.com/timlinux/osgeo-inject">GitHub</a>
+    <a href="https://github.com/timlinux/OSGEO-Inject">GitHub</a>
   </div>
   <script>
     fetch('/content/history.json')

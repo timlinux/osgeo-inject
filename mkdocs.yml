@@ -4,16 +4,16 @@
 site_name: OSGEO-Inject
 site_description: Lightweight affiliate badge system for OSGeo community projects
 site_author: Tim Sketcher / Kartoza
-site_url: https://timlinux.github.io/osgeo-inject/
+site_url: https://timlinux.github.io/OSGEO-Inject/
 
-repo_name: timlinux/osgeo-inject
-repo_url: https://github.com/timlinux/osgeo-inject
+repo_name: timlinux/OSGEO-Inject
+repo_url: https://github.com/timlinux/OSGEO-Inject
 edit_uri: edit/main/docs/
 
 copyright: |
   Made with 💗 by <a href="https://kartoza.com">Kartoza</a> |
   <a href="https://github.com/sponsors/timlinux">Donate!</a> |
-  <a href="https://github.com/timlinux/osgeo-inject">GitHub</a>
+  <a href="https://github.com/timlinux/OSGEO-Inject">GitHub</a>
 
 theme:
   name: material
@@ -46,7 +46,6 @@ theme:
   icon:
     repo: fontawesome/brands/github
   logo: assets/logo.svg
-  favicon: assets/favicon.ico
 
 plugins:
   - search
@@ -87,7 +86,7 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/timlinux/osgeo-inject
+      link: https://github.com/timlinux/OSGEO-Inject
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/kartaborneo
   analytics:

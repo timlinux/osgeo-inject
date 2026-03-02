@@ -23,7 +23,7 @@ Add the OSGEO-Inject flake to your system configuration:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    osgeo-inject.url = "github:timlinux/osgeo-inject";
+    osgeo-inject.url = "github:timlinux/OSGEO-Inject";
   };
 
   outputs = { self, nixpkgs, osgeo-inject }: {
@@ -69,7 +69,7 @@ A Docker-based deployment is also available:
 version: '3.8'
 services:
   osgeo-inject:
-    image: ghcr.io/timlinux/osgeo-inject:latest
+    image: ghcr.io/timlinux/OSGEO-Inject:latest
     ports:
       - "80:80"
       - "443:443"
@@ -85,7 +85,7 @@ services:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/timlinux/osgeo-inject.git
+git clone https://github.com/timlinux/OSGEO-Inject.git
 cd osgeo-inject
 ```
 

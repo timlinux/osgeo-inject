@@ -19,7 +19,7 @@ Thank you for your interest in contributing to OSGEO-Inject!
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/timlinux/osgeo-inject.git
+git clone https://github.com/timlinux/OSGEO-Inject.git
 cd osgeo-inject
 ```
 

@@ -47,7 +47,7 @@
     announcementEndpoint: "/content/announcement.json",
     osgeoUrl: "https://www.osgeo.org",
     osgeoProjectsUrl: "https://www.osgeo.org/projects/",
-    logoPath: "/images/osgeo-logo.png",
+    logoPath: "/images/osgeo-logo.svg",
     cacheDuration: 3600000, // 1 hour in milliseconds
   };
 
@@ -228,10 +228,22 @@
 
     // Add toggle functionality
     const toggle = container.querySelector(".osgeo-inject__toggle");
-    toggle.addEventListener("click", function (e) {
+    const logo = container.querySelector(".osgeo-inject__logo");
+
+    function toggleBadge(e) {
       e.preventDefault();
+      e.stopPropagation();
       const isCollapsed = container.classList.toggle("osgeo-inject--collapsed");
       toggle.setAttribute("aria-expanded", !isCollapsed);
+    }
+
+    toggle.addEventListener("click", toggleBadge);
+
+    // Allow clicking logo to expand when collapsed
+    logo.addEventListener("click", function (e) {
+      if (container.classList.contains("osgeo-inject--collapsed")) {
+        toggleBadge(e);
+      }
     });
 
     return container;

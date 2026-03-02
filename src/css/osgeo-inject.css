@@ -204,33 +204,34 @@
   color: #fff;
 }
 
-/* Collapsed state */
-.osgeo-inject--collapsed .osgeo-inject__content {
+/* Collapsed state - show only logo */
+.osgeo-inject--collapsed .osgeo-inject__text {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
+  padding: 0 20px;
 }
 
 .osgeo-inject--collapsed .osgeo-inject__toggle-icon {
   transform: rotate(180deg);
 }
 
+.osgeo-inject--collapsed .osgeo-inject__logo {
+  border-bottom: none;
+  cursor: pointer;
+}
+
 .osgeo-inject--collapsed .osgeo-inject__inner {
   width: auto;
+  min-width: 120px;
+}
+
+.osgeo-inject--collapsed .osgeo-inject__logo img {
+  max-width: 80px;
 }
 
 .osgeo-inject--collapsed .osgeo-inject__toggle {
-  position: static;
-  width: 40px;
-  height: 40px;
-  margin: 8px;
-  background: var(--osgeo-accent);
-  opacity: 1;
-}
-
-.osgeo-inject--collapsed .osgeo-inject__toggle:hover {
-  background: var(--osgeo-link-hover);
-  transform: scale(1.1);
+  display: none;
 }
 
 /* Responsive adjustments */

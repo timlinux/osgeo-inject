@@ -1,12 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: OSGEO-Inject
 Upstream-Contact: Tim Sketcher <tim@kartoza.com>
-Source: https://github.com/timlinux/osgeo-inject
+Source: https://github.com/timlinux/OSGEO-Inject
 
 Files: *
 Copyright: 2026 Tim Sketcher <tim@kartoza.com>
 License: MIT
 
-Files: src/images/osgeo-logo.svg
+Files: src/images/osgeo-logo.svg docs/assets/logo.svg
 Copyright: OSGeo Foundation
 License: CC-BY-4.0
