@@ -132,7 +132,7 @@ create_backup() {
     tar -czf "$BACKUP_DIR/${backup_name}.tar.gz" -C "$BACKUP_DIR" "$backup_name"
 
   # Cleanup temp directory
-  rm -rf "$BACKUP_DIR/$backup_name"
+  rm -rf "${BACKUP_DIR:?}/${backup_name:?}"
 
   # Calculate size and checksum
   local size
@@ -421,7 +421,7 @@ cli_backup() {
 
   # Compress
   tar -czf "$BACKUP_DIR/${backup_name}.tar.gz" -C "$BACKUP_DIR" "$backup_name"
-  rm -rf "$BACKUP_DIR/$backup_name"
+  rm -rf "${BACKUP_DIR:?}/${backup_name:?}"
 
   # Checksum
   sha256sum "$BACKUP_DIR/${backup_name}.tar.gz" >>"$BACKUP_DIR/checksums.txt"

@@ -14,12 +14,12 @@ ANNOUNCEMENT_FILE="$PROJECT_ROOT/src/content/announcement.json"
 HISTORY_FILE="$PROJECT_ROOT/src/content/history.json"
 DEPLOY_HOST="${OSGEO_INJECT_DEPLOY_HOST:-affiliate.osgeo.org}"
 
-# Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+# Colors (exported for use in subshells)
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[1;33m'
+export BLUE='\033[0;34m'
+export NC='\033[0m'
 
 # Check dependencies
 check_dependencies() {
@@ -315,10 +315,9 @@ edit_announcement() {
     exit 1
   fi
 
-  local current_message current_link current_expires
+  local current_message current_link
   current_message=$(jq -r '.message' "$ANNOUNCEMENT_FILE")
   current_link=$(jq -r '.link' "$ANNOUNCEMENT_FILE")
-  current_expires=$(jq -r '.expires' "$ANNOUNCEMENT_FILE")
 
   MESSAGE=$(gum input \
     --value "$current_message" \

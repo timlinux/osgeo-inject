@@ -116,7 +116,7 @@ show_backup_details() {
     echo ""
   fi
 
-  rm -rf "$temp_dir"
+  rm -rf "${temp_dir:?}"
 }
 
 # Verify backup checksum
@@ -182,7 +182,7 @@ perform_restore() {
     ;;
   esac
 
-  rm -rf "$temp_dir"
+  rm -rf "${temp_dir:?}"
 
   gum style --foreground 82 "✅ Restore completed successfully"
 

@@ -12,7 +12,7 @@ for file in "$@"; do
 
     # Create a temporary nginx environment
     temp_dir=$(mktemp -d)
-    trap 'rm -rf "$temp_dir"' EXIT
+    trap 'rm -rf "${temp_dir:?}"' EXIT
 
     # Create minimal required structure
     mkdir -p "$temp_dir"/{logs,ssl,www}

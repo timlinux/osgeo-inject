@@ -89,9 +89,6 @@ extra:
       link: https://github.com/timlinux/OSGEO-Inject
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/kartaborneo
-  analytics:
-    provider: custom
-    property: osgeo-inject
 
 extra_css:
   - assets/extra.css
