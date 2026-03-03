@@ -25,6 +25,22 @@ under 15KB and loads asynchronously to never impact host page performance.
 ![Nix](https://img.shields.io/badge/Nix-5277C3?logo=nixos&logoColor=white)
 ![NixOS](https://img.shields.io/badge/NixOS-5277C3?logo=nixos&logoColor=white)
 
+
+<img width="1280" height="758" alt="image" src="https://github.com/user-attachments/assets/c805a28e-e273-4666-8965-7324bc81f8e6" />
+
+
+<img width="1280" height="714" alt="image" src="https://github.com/user-attachments/assets/d2b193c0-aa89-4344-a48e-fe83e9f953ab" />
+
+
+<img width="1280" height="714" alt="image" src="https://github.com/user-attachments/assets/90ef868d-b8f7-42f5-a1c1-22d68793c126" />
+
+
+
+<img width="1280" height="714" alt="image" src="https://github.com/user-attachments/assets/a11d9f47-8f3b-435c-805e-4679f43ff2a7" />
+
+
+
+
 ---
 
 ## Quick Start
